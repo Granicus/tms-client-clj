@@ -4,7 +4,7 @@
 
 (defn build-sms-message [text phone-numbers]
   (json/write-str {:headers {"X-AUTH-TOKEN" (:token stage)}
-                   :body "You've been Clojured"
+                   :body text
                    :recipients (map (fn [tn] {:phone (str tn)}) phone-numbers)}))
 
 (defn send-sms [text phone-numbers {:keys [token url]}]
