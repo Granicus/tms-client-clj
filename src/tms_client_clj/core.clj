@@ -1,6 +1,12 @@
 (ns tms-client-clj.core
   (:require [clj-http.client :as client]
-            [clojure.data.json :as json]))
+             [clojure.data.json :as json]
+             [environ.core :as env] ))
+
+(def tms-creds
+  { :auth-token (env/env :auth-token)
+    :api-root   (env/env :api-root) })
+
 
 (defn build-sms-message [text phone-numbers]
   (json/write-str {:headers {"X-AUTH-TOKEN" (:token stage)}
