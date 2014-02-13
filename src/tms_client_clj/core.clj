@@ -9,12 +9,11 @@
 
 
 (defn build-sms-message [text phone-numbers]
-  (json/write-str {:headers {"X-AUTH-TOKEN" (:token stage)}
-                   :body text
+  (json/write-str {:body text
                    :recipients (map (fn [tn] {:phone (str tn)}) phone-numbers)}))
 
 (defn send-sms [text phone-numbers {:keys [token url]}]
-  (let [payload {:headers {"X-AUTH-TOKEN" (:token stage)}
+  (let [payload {:headers {"X-AUTH-TOKEN" token}
                  :body (build-sms-message text phone-numbers)
                  :content-type :json
                  :accept :json
