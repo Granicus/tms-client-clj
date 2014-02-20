@@ -4,8 +4,10 @@
              [environ.core :as env] ))
 
 (def tms-creds
-  { :auth-token (env/env :auth-token)
-    :api-root   (env/env :api-root) })
+  { 
+    :url   (env/env :api-root) 
+    :token (env/env :auth-token)
+    })
 
 
 (defn build-sms-message [text phone-numbers]
@@ -24,8 +26,8 @@
 
 (comment
 
-  (def url "https://stage-tms.govdelivery.com")
-  (def token "api-token")
+  (def url (tms-creds :api-root))
+  (def token (tms-creds :auth-token))
   (def stage {:url url :token token})
 
   (send-sms "sup?" ["5555555555"] stage)
