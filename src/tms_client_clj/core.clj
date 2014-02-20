@@ -26,10 +26,7 @@
 
 (comment
 
-  (def url (tms-creds :api-root))
-  (def token (tms-creds :auth-token))
-  (def stage {:url url :token token})
 
-  (send-sms "sup?" ["5555555555"] stage)
+  (send-sms "sup?" ["5555555555"] tms-creds)
 
 )
