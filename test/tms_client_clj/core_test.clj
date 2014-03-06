@@ -7,3 +7,9 @@
   (testing "credentials are set"
     (is (string? (env/env :auth-token)))
     (is (string? (env/env :api-root)))))
+
+(deftest discoverablity
+  (testing "does discoverability work?"
+    (let [result (discover tms-creds)]
+      (is (result "sms_messages" ))
+      )))
