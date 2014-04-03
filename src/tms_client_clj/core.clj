@@ -1,13 +1,13 @@
 (ns tms-client-clj.core
   (:require [clj-http.client :as client]
-             [clojure.data.json :as json]
-             [environ.core :as env] ))
+            [clojure.data.json :as json]
+            [environ.core :as env] ))
 
 (def tms-creds
-  { 
-    :url   (env/env :api-root) 
-    :token (env/env :auth-token)
-    })
+  {
+   :url   (env/env :api-root)
+   :token (env/env :auth-token)
+   })
 
 (defn build-sms-message [text phone-numbers]
   (json/write-str {:body text
@@ -40,4 +40,4 @@
 
   (send-sms "sup?" ["5555555555"] tms-creds)
 
-)
+  )
